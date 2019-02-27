@@ -1,0 +1,161 @@
+﻿@using FoodDelivery.WebApp.Models
+@{
+    Layout = null;
+    List<Restaurant> ResList = ViewBag.Restaurants;
+    List<RestaurantType> typeList = ViewBag.types;
+    string userName = Convert.ToString(ViewBag.UserName);
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Restaurants</title>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        #Res_mainpic {
+            width: 100%;
+            background-size: cover;
+            background-image: url("../../images/Chroizo-Egg-Skillet-22.jpg");
+            background-repeat: no-repeat;
+            height: 400px;
+        }
+
+        .navbar-nav li a {
+            color: #e5e5e5;
+            font-size: x-large;
+            font-family: Leelawadee;
+        }
+
+
+        .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+            background-color: #BF2413;
+            color: #ffffff;
+        }
+
+        .Res_header {
+            height: 100px;
+            background-color: #BF2413;
+            padding-top: 20px;
+        }
+
+        .type-nav-links {
+            font-size: 20px;
+            font-family: cursive;
+        }
+
+        .Res-name {
+            font-family: cursive;
+            font-size: 30px;
+            color: #BF2413;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid Res_header">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Restaurants</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            @*<button id="log" type="button" class="btn btn-custom1" style="float:right;" data-target="#mymodal" data-toggle="modal">Login / Register</button>*@
+
+            <div class="row">
+                <div class="col-md-2" style="text-align:center;">
+                    @if (!string.IsNullOrEmpty(userName))
+                    {
+
+                        <span style="color:blue">Welcome | @userName</span>
+
+                    }
+                </div>
+            </div>
+
+            @Ajax.ActionLink("Login", "Login", "Home", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "loginform", OnSuccess = "popuplogin" }, new { @class = "btn btn-custom1", style = "float:right;" })
+            <div class="modal fade" id="loginmodal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal">&times;</button>
+                            <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                            <div class="row">
+                                <div class="col-md-12" id="error-message"></div>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="loginform">
+
+                            @* Login form will render here *@
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <p>Not a member? <a href="#">Sign Up</a></p>
+                            <p>Forgot <a href="#">Password?</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid" id="Res_mainpic">
+        <div class="container" style=" margin-top:30px">
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="container" style="margin-top:30px">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group-vertical " style="min-width:200px;">
+
+                </div>
+            </div>
+            <div class="col-md-9" id="typeRestaurants">
+               
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @* Login Scripts *@
+
+    <script>
+        function popuplogin() {
+            $('#loginmodal').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validateloginform");
+        }
+
+        var onSuccess = function (result) {
+            if (result.url) {
+                window.location.href = result.url;
+            }
+        }
+    </script>
+
+
+
+
+</body>
+</html>

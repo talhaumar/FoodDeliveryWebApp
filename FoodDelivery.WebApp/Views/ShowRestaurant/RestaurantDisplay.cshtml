@@ -1,0 +1,144 @@
+﻿@model FoodDelivery.WebApp.Models.Order
+@using FoodDelivery.WebApp.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Menu> menu = ViewBag.menu;
+    Restaurant Res = ViewBag.Restaurant;
+    User user = ViewBag.User;
+    double distance = ViewBag.distance;
+    int deliveryCharges = ViewBag.delivery;
+    
+
+}
+
+    
+
+    <div class="container-fluid" id="Res_mainpic">
+        <div class="container" style=" margin-top:30px">
+            <div class="row namediv">
+                <div class="col-sm-12" style="text-align:center"><h4 style="color:#BF2413;font-family:'Open Sans',sans-serif; font-size:60px">@Res.Name</h4></div>
+                <div class="col-sm-6"><span class="glyphicon glyphicon-phone-alt "></span><span class="res_detail_info">@Res.Phone</span></div>
+                <div class="col-sm-6"><span class="glyphicon glyphicon-envelope "></span><span class="res_detail_info">@Res.Email</span></div>
+                <div class="col-sm-12"><span class="glyphicon glyphicon-map-marker "></span><span class="res_detail_info">@Res.Address</span></div>
+                <div class="col-sm-6"><span class="glyphicon glyphicon-time "></span><span class="res_detail_info">@Res.OpeningTime</span></div>
+                <div class="col-sm-6"><span class="glyphicon glyphicon-time "></span><span class="res_detail_info">@Res.ClosingTime</span></div>
+                <div class="col-sm-6"><span class="glyphicon glyphicon-time "></span><span class="res_detail_info">@distance</span></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="container container_div">
+        <div class="row">
+
+            <div class="col-sm-7 menu_container">
+                @if (menu != null)
+                {
+                    foreach (Menu x in menu)
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 menu_cat_div"><span class="menu_cat">@x.Menu_Cat.Name</span></div>
+                        </div>
+                        if (x.items != null)
+                        {
+                            foreach (FoodItem f in x.items)
+                            {
+                                <div class="row item_div">
+                                    <div class="col-sm-9" style="padding:5px">
+                                        <div><span class="item_name">@f.Name</span></div>
+                                        <div><span class="item_desc">@f.Description</span></div>
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="item_price item_price_div"><span class="item_price">Rs.@f.Price</span>@Ajax.ActionLink("+", "OrderNow", "ShowRestaurant", new { id = f.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "cartRender" }, new { @class = "btn btn-success btn-xs " })</div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+
+            <div class="col-sm-4" style="background-color:#ffffff; margin-left:20px; float:right ">
+                <div id="cartRender">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center"><span style="font-family:'Open Sans',sans-serif; font-size:30px; color:#000000">Your Order</span></div>
+                    </div>
+
+                    <div class="row cart_total_div">
+                        <div class="col-sm-12 cart_total_item"><span style="font-size:20px">Sub total</span><span style="float:right; font-size:20px">0</span></div>
+                        <div class="col-sm-12 cart_total_item"><span style="font-size:20px">Delivery Charges</span><span style="float:right; font-size:20px">@deliveryCharges</span></div>
+                        <div class="col-sm-12 cart_total_item"><span style="font-size:25px; color:#BF2413">Total</span><span style="float:right; color:#BF2413; font-size:30px">0</span></div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button id="log" type="button" class="btn btn-custom1" style="float:right;" data-target="#chkmodal" data-toggle="modal">Proceed</button>
+
+                        <div class="modal fade" id="chkmodal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" type="button" data-dismiss="modal">&times;</button>
+                                        <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form" action="@Url.Action("Checkout","ShowRestaurant")" method="post">
+                                            <div class="form-group">
+                                                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Phone</label>
+                                                @if (user != null)
+                                                {
+                                                    <input type="text" name="Phone" class="form-control" id="usrname" value="@user.Phone" placeholder="Enter Phone">
+                                                }
+                                                else
+                                                {
+
+                                                    <input type="text" name="Phone" class="form-control" id="usrname" placeholder="Enter Phone">
+                                                }
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Address</label>
+                                                @if (user != null)
+                                                {
+                                                    <input type="text" name="StreetAddress" class="form-control" id="usrname" value="@user.Address" placeholder="Enter Address">
+                                                }
+                                                else
+                                                {
+
+                                                    <input type="text" name="StreetAddress" class="form-control" id="usrname"  placeholder="Enter Address">
+                                                }
+                                                
+                                            </div>
+                                            <input type="hidden" name="ResId" value="@Res.Id" />
+
+                                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Checkout</button>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                        <p>Not a member? <a href="#">Sign Up</a></p>
+                                        <p>Forgot <a href="#">Password?</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            @Html.ActionLink("checkout", "checkout", "ShowRestaurant", new { id = Res.Id }, new { @class = "btn btn-custom1" })
+        </div>
+    </div>

@@ -1,0 +1,48 @@
+﻿@model FoodDelivery.WebApp.Models.User
+@using FoodDelivery.WebApp.Models
+
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    List<User> ulist = ViewBag.userList;
+}
+
+<h2>ManageUser</h2>
+
+<div class="row" id="variation">
+
+    <div class="col-md-12">
+        <h4>All Customers</h4>
+        <table id="mytable1" class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (ulist != null)
+                {
+                    foreach (User u in ulist)
+                    {
+                        <tr>
+                            <td>@u.Id</td>
+                            <td>@u.Name</td>
+                            <td>@u.Phone</td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="View User Details">@Ajax.ActionLink("View Details", "ViewUser", "User", new { id = u.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popupSimpleModal" }, new { @class = "btn btn-warning btn-sm glyphicon glyphicon-edit" })</span></td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="Delete User">@Html.ActionLink("Delete", "DeleteUser", "User", new { id = u.Id }, new { @class = "btn btn-danger btn-sm glyphicon glyphicon-trash" })</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row" id="ModalVariant">
+</div>

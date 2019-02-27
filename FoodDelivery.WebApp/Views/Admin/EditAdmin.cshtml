@@ -1,0 +1,65 @@
+﻿@model FoodDelivery.WebApp.Models.User
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="modalToTrigger" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span>Edit Admin</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="validationform" method="post" action="@Url.Action("UpdateAdmin", "Admin")">
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(m=>m.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, "Name")
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter name" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone, "Phone")
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Enter Phone" })
+                        @Html.ValidationMessageFor(m => m.Phone, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, "Password")
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                        @Html.ValidationMessageFor(m => m.Password, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, "Email")
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                        @Html.ValidationMessageFor(m => m.Email, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address, "Address")
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Enter Address" })
+                        @Html.ValidationMessageFor(m => m.Address, null, new { style = "color:red" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SecurityQuestion, "Security Question")
+                        &nbsp;&nbsp;&nbsp;
+                        @Html.DisplayFor(m => m.SecurityQuestion, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SecurityQuestion, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SecurityAnswer, "Security Answer")
+                        @Html.TextBoxFor(m => m.SecurityAnswer, new { @class = "form-control", @placeholder = "Enter your answer" })
+                        @Html.ValidationMessageFor(m => m.SecurityAnswer, null, new { style = "color:red" })
+                    </div>
+
+                    <button type="submit" class="btn btn-custom1 btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

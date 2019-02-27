@@ -1,0 +1,130 @@
+﻿@model FoodDelivery.WebApp.Models.Menu
+@using FoodDelivery.WebApp.Models
+
+@{
+    ViewBag.Title = "ViewMenu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    List<Menu> MenuList = new List<Menu>();
+    MenuList = ViewBag.menu;
+}
+
+<div class="row" id="menuVariant">
+    <div class="col-md-12"><h2>@ViewBag.ResName</h2></div>
+
+
+    <div class="row" style="margin-bottom:20px">
+        <div class="col-md-2">
+            <span data-placement="top" data-toggle="tooltip" title="Add New Category">@Ajax.ActionLink("Add Category", "AddCategory", "Restaurant", new { id = ViewBag.Rid }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "FormVarirant1", OnSuccess = "popup" }, new { @class = "btn btn-custom1 btn-sm glyphicon glyphicon-plus" })</span>
+        </div>
+        <div class="col-md-2">
+            <span data-placement="top" data-toggle="tooltip" title="Add New Food Item">@Ajax.ActionLink("Add Food Item", "AddFoodItem", "Restaurant", new { rid = ViewBag.Rid }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "FormVarirant2", OnSuccess = "popupFoodItem" }, new { @class = "btn btn-custom1 btn-sm glyphicon glyphicon-plus" })</span>
+        </div>
+    </div>
+
+
+    @if (MenuList != null)
+    {
+        foreach (Menu x in MenuList)
+        {
+            <div class="row menu_cat_div">
+                <div class="col-md-8"><span class="menu_cat">@x.Menu_Cat.Name</span></div>
+                <div class="col-md-2"><span data-placement="top" data-toggle="tooltip" title="Edit Category">@Ajax.ActionLink("Edit", "EditCategory", "Restaurant", new { rid = ViewBag.Rid, cid = x.Menu_Cat.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "FormVarirant3", OnSuccess = "popupEditCat" }, new { @class = "btn btn-warning btn-sm glyphicon glyphicon-edit" })</span></div>
+                <div class="col-md-2"><span data-placement="top" data-toggle="tooltip" title="Delete Category">@Html.ActionLink("Delete", "DeleteMenuCategory", "Restaurant", new { rid = ViewBag.Rid, cid = x.Menu_Cat.Id }, new { @class = "btn btn-danger btn-sm glyphicon glyphicon-trash" })</span></div>
+            </div>
+            if (x.items != null)
+            {
+                foreach (FoodItem f in x.items)
+                {
+                    <div class="row item_div" style="padding:5px">
+                        <div class="col-md-4"><p>@f.Name</p></div>
+                        <div class="col-md-4"><p>@f.Price</p></div>
+                        <div class="col-md-2"><span data-placement="top" data-toggle="tooltip" title="Edit Food Item">@Ajax.ActionLink("Edit", "EditFoodItem", "Restaurant", new { rid = ViewBag.Rid, fid = f.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "FormVarirant4", OnSuccess = "popupEditFoodItem" }, new { @class = "btn btn-warning btn-xs glyphicon glyphicon-edit" })</span></div>
+                        <div class="col-md-2"><span data-placement="top" data-toggle="tooltip" title="Delete Food Item">@Html.ActionLink("Delete", "DeleteFoodItem", "Restaurant", new { rid = ViewBag.Rid, fid = f.Id }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon-trash" })</span></div>
+                    </div>
+                }
+            }
+        }
+    }
+
+
+</div>
+
+@* Category Modal *@
+
+<div class="modal fade" id="modalToTrigger" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF4123">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span> Add Category</h4>
+            </div>
+            <div class="modal-body" id="FormVarirant1">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* FoodItem Modal *@
+
+<div class="modal fade" id="foodItemModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF4123">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span> Add FoodItem</h4>
+            </div>
+            <div class="modal-body" id="FormVarirant2">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Edit Category Modal *@
+
+<div class="modal fade" id="EditCategoryModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF4123">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Edit Category</h4>
+            </div>
+            <div class="modal-body" id="FormVarirant3">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Edit FoodItem Modal *@
+
+<div class="modal fade" id="editFoodItemModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF4123">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Edit FoodItem</h4>
+            </div>
+            <div class="modal-body" id="FormVarirant4">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

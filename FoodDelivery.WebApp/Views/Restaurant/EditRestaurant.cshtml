@@ -1,0 +1,103 @@
+﻿@model FoodDelivery.WebApp.Models.RestaurantModel
+
+@{
+    Layout = null;
+    int resid = ViewBag.Id;
+}
+
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF4123">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-edit" style="margin-right:10px"></span>Edit Restaurant</h4>
+            </div>
+            <div class="modal-body" id="modalBodyVariant">
+                <form role="form" id= "validationform" method="post" action="@Url.Action("UpdateRestaurant", "Restaurant")" enctype="multipart/form-data">
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(m => m.restaurant.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Name, "Name")
+                        @Html.TextBoxFor(m => m.restaurant.Name, new { @class = "form-control", placeholder = "Enter name" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Name, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Phone, "Phone")
+                        @Html.TextBoxFor(m => m.restaurant.Phone, new { @class = "form-control", placeholder = "Enter Phone" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Phone, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Email, "Email")
+                        @Html.TextBoxFor(m => m.restaurant.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Email, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Address, "Address")
+                        @Html.TextAreaFor(m => m.restaurant.Address, new { @class = "form-control", placeholder = "Enter Address" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Address, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Password, "Password")
+                        @Html.TextBoxFor(m => m.restaurant.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Password, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Tax, "Tax")
+                        @Html.TextBoxFor(m => m.restaurant.Tax, new { @class = "form-control", placeholder = "Enter Tax" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Tax, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.OpeningTime, "Opening Time")
+                        @Html.TextBoxFor(m => m.restaurant.OpeningTime, new { id = "opentime", @class = "form-control", @placeholder = "click to select time" })
+                        @Html.ValidationMessageFor(m => m.restaurant.OpeningTime, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.ClosingTime, "Closing Time")
+                        @Html.TextBoxFor(m => m.restaurant.ClosingTime, new { id = "closetime", @class = "form-control", @placeholder = "click to select time" })
+                        @Html.ValidationMessageFor(m => m.restaurant.ClosingTime, null, new { style = "color:red" })
+                    </div>
+                    @Html.HiddenFor(m =>m.restaurant.Area)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.restaurant.Review, "Review")
+                        @Html.TextAreaFor(m => m.restaurant.Review, new { @class = "form-control", placeholder = "Enter Review" })
+                        @Html.ValidationMessageFor(m => m.restaurant.Review, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group" id="ImageDiv">
+                        @Html.LabelFor(m => m.restaurant.ImageURL, "Upload New Image")
+                        <input type="file" class="form-control" name="photo" value="@Model.restaurant.ImageURL">
+                        @Html.ValidationMessageFor(m => m.restaurant.ImageURL, null, new { style = "color:red" })
+                    </div>
+                    <div class="row" id="ShowingImageDiv">
+                        <div class="col-md-2">
+                            @Html.HiddenFor(m => m.restaurant.ImageURL, new { id = "imgurl" })
+                            <img src="~/images/restaurantimages/@Model.restaurant.ImageURL" alt="No Image" class="img-responsive" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-custom1 btn-xs" id="HideImage">Remove Image</button>
+                        </div>
+                    </div>
+                    @if (Model.RestaurantType != null)
+                    {
+                        for (int i = 0; i < Model.RestaurantType.Count; i++)
+                        {
+                            @Html.HiddenFor(m => m.RestaurantType[i].Id)
+                            @Html.HiddenFor(m => m.RestaurantType[i].Name)
+                            @Html.LabelFor(m => m.RestaurantType[i].IsSelected, Model.RestaurantType[i].Name, new { @class = "checkbox-inline chkbox" })
+                            @Html.CheckBoxFor(m => m.RestaurantType[i].IsSelected)
+
+                        }
+                    }
+
+
+                    <button type="submit" class="btn btn-custom1 btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

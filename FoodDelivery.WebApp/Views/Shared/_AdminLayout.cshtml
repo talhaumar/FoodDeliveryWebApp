@@ -1,0 +1,257 @@
+﻿@{
+    Layout = null;
+    string userName = Convert.ToString(ViewBag.UserName);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/jquery.timepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <style>
+        .orderheading{
+            color:#BF2413;
+        }
+        .order-main-heading{
+            background-color:#FEF1DF;
+            margin-bottom:10px;
+            margin-top:20px;
+        }
+        .pac-container {
+            z-index: 1050 !important;
+        }
+        .chkbox{
+            margin-right:10px;
+        }
+        .menu_cat_div {
+            background-color: #FEF1DF;
+            min-height: 40px;
+            padding: 5px;
+        }
+        .item_div {
+            border-bottom: 2px solid #E5E4E3;
+            padding-left: 5px;
+        }
+        .menu_cat {
+            font-family: 'Open Sans',sans-serif;
+            color: #000000;
+            font-size: 30px;
+        }
+        .userheading{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:20px;
+            color:#BF2413;
+            margin-top:20px;
+
+        }
+        .userdetail{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:15px;
+            
+
+        }
+        .userrow{
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" id="admin-header" style="padding:20px">
+        <div class="row">
+            <div class="col-sm-10">
+                <img src="~/images/LazyLogo.png" />
+                <div class="row">
+                    <div class="col-md-2" style="text-align:center;">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                @if (!string.IsNullOrEmpty(userName))
+                {
+                    <div class="dropdown">
+                        <button class="btn btn-custom1 dropdown-toggle" type="button" data-toggle="dropdown">
+                            Welcome | @userName
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My Account</a></li>
+                            
+                            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                        </ul>
+                    </div>
+
+
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="btn-group-vertical " style="min-width:200px; margin-top:20px; ">
+                    <a href="@Url.Action("ManageRestaurant","Restaurant")" class="btn btn-custom btn-block active"><h4 style="color:#ffffff">Manage Restaurants</h4></a>
+                    <a href="@Url.Action("ManageOrder","Order")" type="button" class="btn btn-custom btn-block"><h4 style="color:#ffffff">Manage Orders</h4></a>
+                    <a href="@Url.Action("ManageUser","User")" class="btn btn-custom btn-block"><h4 style="color:#ffffff">Manage Users</h4></a>
+                    <a href="@Url.Action("ManageRider","Rider")" class="btn btn-custom btn-block"><h4 style="color:#ffffff">Manage Riders</h4></a>
+                    <a href="@Url.Action("ManageAdmin","Admin")" class="btn btn-custom btn-block"><h4 style="color:#ffffff">Manage Admins</h4></a>
+                    <a href="@Url.Action("ManageUserMessage","UserMessage")" class="btn btn-custom btn-block"><h4 style="color:#ffffff">Manage User Messages</h4></a>
+                </div>
+
+            </div>
+            <div class="col-sm-10">
+
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <script src="~/Scripts/jquery.timepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#opentime').timepicker({});
+            $('#closetime').timepicker({});
+            $('#paymenttime').timepicker({});
+            $('#mytable').dataTable();
+            $('#mytable1').dataTable();
+
+        });
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        google.maps.event.addDomListener(window, 'load', function () {
+            new google.maps.places.SearchBox(document.getElementById('txtPlaces'));
+            new google.maps.places.SearchBox(document.getElementById('txtPlaces1'));
+
+            //////////////////////////
+            //google.maps.event.addDomListener(window, 'load', function () {
+            //var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+            //google.maps.event.addListener(places, 'place_changed', function () {
+            //var place = places.getPlace();
+            //var address = place.formatted_address;
+            //var latitude = place.geometry.location.lat();
+            //var longitude = place.geometry.location.lng();
+            //var mesg = "Address: " + address;
+            //mesg += "\nLatitude: " + latitude;
+            //mesg += "\nLongitude: " + longitude;
+            //alert(mesg);
+            //});
+        });
+        function resizeMap() {
+
+        }
+        $('#restaurantaddmodal').on('show.bs.modal', function () {
+            var directionsDisplay;
+            var directionsService = new google.maps.DirectionsService();
+            google.maps.event.addDomListener(window, 'load', function () {
+                new google.maps.places.SearchBox(document.getElementById('txtPlaces'));
+                new google.maps.places.SearchBox(document.getElementById('txtPlaces1'));
+
+                //////////////////////////
+                //google.maps.event.addDomListener(window, 'load', function () {
+                //var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                //google.maps.event.addListener(places, 'place_changed', function () {
+                //var place = places.getPlace();
+                //var address = place.formatted_address;
+                //var latitude = place.geometry.location.lat();
+                //var longitude = place.geometry.location.lng();
+                //var mesg = "Address: " + address;
+                //mesg += "\nLatitude: " + latitude;
+                //mesg += "\nLongitude: " + longitude;
+                //alert(mesg);
+                //});
+            });
+        })
+        $("[data-toggle=tooltip]").tooltip();
+
+        function popup() {
+            $('#modalToTrigger').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+        }
+
+        function popupFoodItem() {
+            $('#foodItemModal').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+        }
+
+        function popupEditCat() {
+            $('#EditCategoryModal').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+        }
+
+        function popupEditFoodItem() {
+            $('#editFoodItemModal').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+        }
+
+        function popupSimpleModal() {
+            $('#simplemodal').modal('show');
+        }
+
+        function popupFoodItem() {
+            $('#foodItemModal').modal('show');
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+
+
+        }
+
+
+        function loginmodalpopup() {
+            $('#loginmodal').modal('show');
+        }
+
+        
+
+        function editcase() {
+            $('#editmodal').modal('show');
+            $('#opentime1').timepicker({});
+            $('#closetime1').timepicker({});
+            
+            $('#ImageDiv').hide();
+            $('#HideImage').click(function (e) {
+                $('#ShowingImageDiv').hide();
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '/Restaurant/ImageDelete',
+                    data: {
+                        "rid": $('#residtxt').val(),
+                        "imgurl": $('#imgurl').val()
+                    },
+                    datatype: "json",
+                    success: function (result) {
+                        if (result.flag == true) {
+                            $('#ImageDiv').show();
+                        }
+                    }
+
+                });
+            });
+
+            jQuery.validator.unobtrusive.parse("#validationform");
+        }
+
+        </script>
+
+</body>
+</html>

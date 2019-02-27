@@ -1,0 +1,67 @@
+﻿@model FoodDelivery.WebApp.Models.Order
+@using FoodDelivery.WebApp.Models
+
+@{
+    ViewBag.Title = "ManageOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ManageOrder</h2>
+
+<div class="row" id="variation">
+
+    <div class="col-md-12">
+        <h4>All Orders</h4>
+        <table id="mytable1" class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Street Address</th>
+                    <th>Date Time</th>
+                    <th>Phone</th>
+                    <th>Order Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (ViewBag.orderList != null)
+                {
+                    foreach (Order m in ViewBag.orderList)
+                    {
+                        <tr>
+                            <td>@m.Id</td>
+                            <td>@m.StreetAddress</td>
+                            <td>@m.OrderDateTime</td>
+                            <td>@m.Phone</td>
+                            @if (m.OrderStatusId == 1)
+                            {
+                                <td>Pending</td>
+                            }
+                            else if (m.OrderStatusId == 2)
+                            {
+                                <td>Inprocess</td>
+                            }
+                            else if (m.OrderStatusId == 3)
+                            {
+                                <td>Delivered</td>
+                            }
+                            else if (m.OrderStatusId == 4)
+                            {
+                                <td>Canceled</td>
+                            }
+                            <td><span data-placement="top" data-toggle="tooltip" title="View Order Details">@Html.ActionLink("View", "ViewOrder", "Order", new { oid = m.Id, osid = m.OrderStatusId, uid = m.UserId, rid = m.ResId }, new { @class = "btn btn-success btn-sm glyphicon glyphicon-edit" })</span></td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="Delete Order">@Html.ActionLink("Delete", "DeleteOrder", "Order", new { id = m.Id }, new { @class = "btn btn-danger btn-sm glyphicon glyphicon-trash" })</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row" id="ModalVariant">
+</div>
+

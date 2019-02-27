@@ -1,0 +1,227 @@
+﻿@model FoodDelivery.WebApp.Models.Rider
+@using FoodDelivery.WebApp.Models
+@{
+    Layout = null;
+    string riderName = Convert.ToString(ViewBag.riderName);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        .RiderManage-Header {
+            min-height: 150px;
+            background-color: #BF2413;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="hidden" id="rNametxt" value="@riderName" />
+    <form role="form" id="lat-lon-form">
+        @Html.TextBoxFor(m => m.Latitude, null, new { id = "lat" })
+        @Html.TextBoxFor(m => m.Longitude, null, new { id = "lon" })
+    </form>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#lat-lon-form').hide();
+
+            var rn = $('#rNametxt').val();
+            $('#mytable').dataTable();
+            if (rn == '' || rn == null) {
+                $('#riderloginmodal').modal({ modal: 'show', backdrop: 'static', keyboard: false });
+            }
+            else {
+                $('#mytable').dataTable();
+                getLocation();
+                //ajaxdelay();
+                setInterval(ajaxdelay(), 5000);
+            }
+
+        });
+
+
+        //login ajax
+        $(function () {
+            $('#btnlogin').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '/RiderLocation/Login',
+                    data: {
+                        "Phone": $('#phonetxt').val(),
+                        "Password": $('#passwordtxt').val(),
+                        "Rememberme": $('input:checkbox:checked').val(),
+                    },
+
+                    datatype: "json",
+                    success: function (result) {
+                        if (result.link != null) {
+                            window.location.href = result.link;
+                        }
+                        else {
+                            $('#error-message').html(result.message);
+                        }
+
+                    }
+
+                });
+            });
+        });
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (p) {
+                    var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+                    $('#lat').val('');
+                    $('#lon').val('');
+                    $('#lat').val(p.coords.latitude);
+                    $('#lon').val(p.coords.longitude);
+
+                });
+            } else {
+                alert('Geo Location feature is not supported in this browser.');
+            }
+        }
+
+        function ajaxdelay() {
+            setInterval(ajax, 5000);
+        }
+
+        function ajax() {
+            $.ajax({
+                type: "POST",
+                url: '/RiderLocation/UpdateRiderLocation',
+                data: {
+                    "Latitude": $('#lat').val(),
+                    "Longitude": $('#lon').val()
+                },
+                datatype: "json",
+                success: function (result) {
+                    if (result.flag != true) {
+                        $('#riderloginmodal').modal({ modal: 'show', backdrop: 'static', keyboard: false });
+                    }
+                    else {
+                        getLocation();
+                        ajaxdelay();
+                    }
+                }
+
+            });
+
+        }
+
+    </script>
+    <div class="container-fluid RiderManage-Header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div><img src="~/images/LazyLogo.png" width="350" /></div>
+                </div>
+                <div class="col-sm-7"></div>
+                <div class="col-sm-3">
+                    @if (!string.IsNullOrEmpty(riderName))
+                    {
+                        <div class="dropdown" style="float:right; margin-top:25px;">
+                            <button class="btn btn-custom1 dropdown-toggle" type="button" data-toggle="dropdown">
+                                Welcome | @riderName
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Logout", "Logout", "RiderLocation")</li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @* Rider Login Modal *@
+    <div class="modal fade" id="riderloginmodal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#BF2413; text-align:center; color:#ffffff">
+                    <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p id="error-message"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="loginform">
+                    @* Login form will render here *@
+
+                    @Html.Partial("~/Views/Shared/_LoginPartialView.cshtml")
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="min-height:700px">
+        <div class="row" id="variation">
+
+            <div class="col-md-12">
+                <h4>Deliverable Orders</h4>
+                <table id="mytable" class="table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Address</th>
+                            <th>Order Date Time</th>
+                            <th>Phone</th>
+                            <th>Cook Time</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.OrderList != null)
+                        {
+                            foreach (Order m in ViewBag.OrderList)
+                            {
+                                <tr>
+                                    <td>@m.Id</td>
+                                    <td>@m.StreetAddress</td>
+                                    <td>@m.OrderDateTime</td>
+                                    <td>@m.Phone</td>
+                                    <td>@m.CookTime</td>
+                                    <td><span data-placement="top" data-toggle="tooltip" title="Click if order is delivered">@Html.ActionLink("Click if Delivered", "OrderDelivered", "RiderLocation", new { oid = m.Id }, new { @class = "btn btn-info btn-xs glyphicon glyphicon-edit" })</span></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" id="ModalVariant">
+    </div>
+
+
+
+
+</body>
+</html>

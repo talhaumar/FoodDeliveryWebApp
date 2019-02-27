@@ -1,0 +1,31 @@
+﻿@model FoodDelivery.WebApp.Models.CustomerOrderViewModel
+@using FoodDelivery.WebApp.Models
+
+@{
+    Layout = null;
+}
+
+@foreach (CustomerOrderViewModel covm in ViewBag.OrderDetailsList)
+{
+    <div class="row" style="background-color:#FEF1DF; padding:10px; margin:5px">
+        <div class="col-sm-12">
+           <span style="font-weight:bold; font-size:17px" >Food Item : </span><span style="font-size:17px" >@covm.fooditem.Name</span>
+        </div>
+    
+    
+        <div class="col-sm-12">
+            <span style="font-weight:bold; font-size:17px">Price : </span><span style="font-size:17px">@covm.fooditem.Price</span>
+        </div>
+    
+    
+        <div class="col-sm-12">
+            <span style="font-weight:bold; font-size:17px">Quantity : </span><span style="font-size:17px">@covm.orderdetails.Quantity</span>
+        </div>
+    </div>
+}
+<h2>Total Bill Amount</h2>
+<div class="row">
+    <div class="col-sm-12">
+       <span style="font-size:25px; color:#BF2413">@Model.payment.Amount</span>
+    </div>
+</div>

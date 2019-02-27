@@ -1,0 +1,18 @@
+﻿@model FoodDelivery.WebApp.Models.MenuCategory
+
+@{
+    Layout = null;
+    int rid = ViewBag.Id;
+}
+
+
+<form role="form" id="validationform" method="post" action="@Url.Action("InsertCategory", "Restaurant")">
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "glyphicon glyphicon-user" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter name" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { style = "color:red" })
+    </div>
+    <input type="hidden" name="ResId" value="@rid" />
+    <button type="submit" class="btn btn-custom1 btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+</form>

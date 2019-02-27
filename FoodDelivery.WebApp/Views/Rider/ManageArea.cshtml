@@ -1,0 +1,29 @@
+﻿@model FoodDelivery.WebApp.Models.Area
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="modalToTrigger" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF2413">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Add New Area</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="validationform" method="post" action="@Url.Action("InsertArea", "Rider")">
+                    <div class="form-group">
+                        <span>@Html.LabelFor(m => m.Name, "Name")</span>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter Area Name" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { style = "color:red" })
+                    </div>
+
+                    <button type="submit" class="btn btn-custom1 btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1 btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

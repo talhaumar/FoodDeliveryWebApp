@@ -1,0 +1,119 @@
+﻿@using FoodDelivery.WebApp.Models
+
+@{
+    ViewBag.Title = "MyOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int dtmin;
+    int dth;
+}
+
+<div class="container" style="min-height:700px">
+    
+
+    <div class="row" id="ordervariation">
+        <div class="row">
+            <div class="col-sm-12"><h2>MyOrders</h2></div>
+        </div>
+        <div class="col-sm-12">
+            <h4>All Orders</h4>
+            <table id="mytable1" class="table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Order Status</th>
+                        
+                        <th>Assigned Rider</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @if (ViewBag.MyOrders != null)
+                    {
+                        foreach (Order order in ViewBag.MyOrders)
+                        {
+                            <tr>
+                                @if (order.OrderStatusId == 1)
+                                {
+                                    <td>Pending</td>
+                                }
+                                else if (order.OrderStatusId == 2)
+                                {
+                                    <td>Inprocess</td>
+                                }
+                                else if (order.OrderStatusId == 3)
+                                {
+                                    <td>Delivered</td>
+                                }
+                                else if (order.OrderStatusId == 4)
+                                {
+                                    <td>Canceled</td>
+                                }
+
+                                
+
+                                @if (order.RiderId != null)
+                                {
+                                    <td>Click locate order button to see assigned rider on map.</td>
+                                }
+                                else
+                                {
+                                    <td>Rider is not assigned yet.</td>
+                                }
+
+
+                                <td><span data-placement="top" data-toggle="tooltip" title="View Order Details">@Ajax.ActionLink("View", "OrderDetails", "Home", new { orderid = order.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "BodyVarirant", OnSuccess = "popuporderDetailModal" }, new { @class = "btn btn-success" })</span></td>
+
+                                @if (order.OrderStatusId == 2)
+                                {
+                                    <td><span data-placement="top" data-toggle="tooltip" title="Locate assigned rider location">@Ajax.ActionLink("Locate Order", "RiderMap", "Home", new { riderid = order.RiderId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordervariation" }, new { @class = "btn btn-custom1" })</span></td>
+                                }
+                                else
+                                {
+                                    <td><span>Order not assigned</span></td>
+                                }
+
+                                @{
+                                dth = order.OrderDateTime.Hour - System.DateTime.Now.Hour;
+                                dtmin = order.OrderDateTime.Minute - System.DateTime.Now.Minute;
+                                }
+
+                                @if ((dtmin <= 10 && dtmin >= -10) && dth == 0 && order.OrderStatusId != 4)
+                                {
+                                    <td><span data-placement="top" data-toggle="tooltip" title="Cancel Order">@Html.ActionLink("Cancel Order", "CancelOrder", "Home", new { orderid = order.Id }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })</span></td>
+                                }
+                                else
+                                {
+                                    <td><span></span></td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#BF4123">
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Order Detail</h4>
+                </div>
+                <div class="modal-body" id="BodyVarirant">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

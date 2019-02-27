@@ -1,0 +1,89 @@
+﻿@using FoodDelivery.WebApp.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Restaurant> ResList = ViewBag.Restaurants;
+    List<RestaurantType> typeList = ViewBag.types;
+    List<double> Distances = ViewBag.distanceList;
+    int count = 0;
+
+}
+
+
+
+<div class="container-fluid" id="Res_mainpic">
+    <div class="container" style=" margin-top:30px">
+
+    </div>
+
+
+</div>
+
+@* Restaurant Search*@
+<div class="row" style="padding:10px">
+    <div class="col-md-2" style="padding-left:30px;">
+        @using (@Ajax.BeginForm("GetSearchRestaurant", "Home", new AjaxOptions { UpdateTargetId = "typeRestaurants", InsertionMode = InsertionMode.Replace }))
+        {
+            <label>Restaurant Search</label>
+            @Html.TextBox("term", null, new { id = "txtSearch" })
+            <input type="submit" value="Search" class="btn btn-custom1" style="float:right;" />
+        }
+    </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top:30px">
+    <div class="row">
+
+        <div class="col-md-2 ">
+           
+            <div class="foodtypesdiv">
+                
+                   
+                
+                <div style="min-width:200px;">
+                    <ul class="foodtypessearch">
+                        <li >@Html.ActionLink("All", "Restaurants", "Home", new { @class = "foodtypeslink" }) </li>
+                        @foreach (RestaurantType x in typeList)
+                        {
+                            <li> @Ajax.ActionLink(x.Name, "RestaurantsByType", "Home", new { id = x.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "typeRestaurants" }, new { @class = "foodtypeslink" })</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-10" id="typeRestaurants">
+            @foreach (var m in ResList)
+            {
+                <div class="row resdiv" style="height:140px; border-bottom:solid 1px #808080; overflow:hidden;">
+                    <div class="col-sm-2" style="padding:10px"><img src="~/images/restaurantimages/@m.ImageURL" width="120" height="120" /></div>
+                    <div class="col-sm-8" style="line-height:10px">
+                        <h3 class="Res-name">@m.Name</h3>
+
+
+                        <p>
+                            <span style="font-size:15px;  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif font-weight:bold">Opening time</span> <span style="font-size:15px; color:#ff0000"> @m.OpeningTime</span>
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                            <span style="font-size:15px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif font-weight:bold">Closing time</span> <span style="font-size:15px; color:#ff0000"> @m.ClosingTime</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-2" style="padding:20px">
+                        @Html.ActionLink("Order", "RestaurantDisplay", "ShowRestaurant", new { a = m.Id, d = Distances[count] }, new { @class = "btn btn-custom1" })
+                        <div class="clearfix"></div>
+                        <span style="font-size:25px; font-weight:bold;">@Distances[count] </span><span style="font-size:15px;">km</span>
+                    </div>
+                </div>
+                count++;
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

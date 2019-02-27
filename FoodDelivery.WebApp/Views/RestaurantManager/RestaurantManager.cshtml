@@ -1,0 +1,211 @@
+﻿@model FoodDelivery.WebApp.Models.Restaurant
+@using FoodDelivery.WebApp.Models
+@{
+    Layout = null;
+    string resName = Convert.ToString(ViewBag.resName);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RestaurantManager</title>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        .ResManage-Header {
+            min-height: 150px;
+            background-color: #BF2413;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="hidden" id="rNametxt" value="@resName" />
+    <script>
+        $(document).ready(function () {
+            var rn = $('#rNametxt').val();
+            $('#mytable').dataTable();
+            if (rn == '' || rn == null) {
+                $('#resMngloginmodal').modal({ modal: 'show', backdrop: 'static', keyboard: false });
+            }
+
+        });
+
+        function popupOrderDetailModal() {
+            $('#orderDetailModal').modal('show');
+        }
+
+        //login ajax
+        $(function () {
+            $('#btnlogin').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '/RestaurantManager/Login',
+                    data: {
+                        "Phone": $('#phonetxt').val(),
+                        "Password": $('#passwordtxt').val(),
+                        "Rememberme": $('input:checkbox:checked').val(),
+                    },
+
+                    datatype: "json",
+                    success: function (result) {
+                        if (result.link != null) {
+                            window.location.href = result.link;
+                        }
+                        else {
+                            $('#error-message').html(result.message);
+                        }
+
+                    }
+
+                });
+            });
+        });
+
+        ////cooktimepost
+        //$(function () {
+        //    $('#btncooktime').click(function (e) {
+        //        e.preventDefault();
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '/RestaurantManager/SetCookTime',
+        //            data: {
+        //                "resId": $('#residtxt').val(),
+        //                "cooktime": $('#CookTime').val(),
+        //            },
+
+        //            datatype: "json",
+        //            success: function (result) {
+        //            }
+
+        //        });
+        //    });
+        //});
+
+    </script>
+    <div class="container-fluid ResManage-Header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div><img src="~/images/LazyLogo.png" width="350" /></div>
+                </div>
+                <div class="col-sm-7"></div>
+                <div class="col-sm-3">
+                    @if (!string.IsNullOrEmpty(resName))
+                    {
+                        <div class="dropdown" style="float:right; margin-top:25px;">
+                            <button class="btn btn-custom1 dropdown-toggle" type="button" data-toggle="dropdown">
+                                Welcome | @resName
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Logout", "Logout", "RestaurantManager")</li>
+                            </ul>
+                        </div>
+                    }
+
+
+
+                    @* Rider Login Modal *@
+                    <div class="modal fade" id="resMngloginmodal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#BF2413; text-align:center; color:#ffffff">
+                                    <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p id="error-message"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-body" id="loginform">
+                                    @* Login form will render here *@
+
+                                    @Html.Partial("~/Views/Shared/_LoginPartialView.cshtml")
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="min-height:700px">
+        <div class="row" id="variation">
+
+            <div class="col-md-12">
+                <h2 style="margin-bottom:20px; font-weight:bold">@resName Orders</h2>
+                <table id="mytable" class="table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order DateTime</th>
+                            <th>Order Status</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.OrderList != null)
+                        {
+                            foreach (Order m in ViewBag.OrderList)
+                            {
+                                <tr>
+                                    <td>@m.OrderDateTime</td>
+                                    @if (m.OrderStatusId == 1)
+                                    {
+                                        <td>Pending</td>
+                                    }
+                                    else if (m.OrderStatusId == 2)
+                                    {
+                                        <td>Inprocess</td>
+                                    }
+                                    else if (m.OrderStatusId == 3)
+                                    {
+                                        <td>Delivered</td>
+                                    }
+                                    else if (m.OrderStatusId == 4)
+                                    {
+                                        <td>Canceled</td>
+                                    }
+                                    <td><span data-placement="top" data-toggle="tooltip" title="View Order Detail">@Ajax.ActionLink("View Order", "OrderDetails", "RestaurantManager", new { oid = m.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "BodyVarirant", OnSuccess = "popupOrderDetailModal" }, new { @class = "btn btn-success btn-sm glyphicon glyphicon-edit" })</span></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#BF4123">
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Order Detail</h4>
+                </div>
+                <div class="modal-body" id="BodyVarirant">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

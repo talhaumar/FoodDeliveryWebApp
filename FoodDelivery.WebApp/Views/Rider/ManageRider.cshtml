@@ -1,0 +1,111 @@
+﻿@model FoodDelivery.WebApp.Models.RiderModel
+
+@{
+    ViewBag.Title = "ManageRider";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ManageRider</h2>
+
+<span data-toggle="tooltip" title="Add New Rider" class="test"><button id="log" type="button" class="btn btn-custom1" data-target="#rideraddmodal" data-toggle="modal">Add Rider</button></span>
+<span data-placement="top" style="margin-left:20px" data-toggle="tooltip" title="Add New Area">@Ajax.ActionLink("Add Area", "ManageArea", "Rider", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popup" }, new { @class = "btn btn-custom1" })</span>
+
+
+<div class="modal fade" id="rideraddmodal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF2413">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Add New Rider</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="post" action="@Url.Action("InsertRider", "Rider")" enctype="multipart/form-data">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.rider.Name, "Name")
+                        @Html.TextBoxFor(m => m.rider.Name, new { @class = "form-control", placeholder = "Enter name" })
+                        @Html.ValidationMessageFor(m => m.rider.Name, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.rider.Phone, "Phone")
+                        @Html.TextBoxFor(m => m.rider.Phone, new { @class = "form-control", placeholder = "Enter Phone" })
+                        @Html.ValidationMessageFor(m => m.rider.Phone, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.rider.Password, "Password")
+                        @Html.TextBoxFor(m => m.rider.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                        @Html.ValidationMessageFor(m => m.rider.Password, null, new { style = "color:red" })
+                    </div>
+                    
+                    @if (Model.arealist != null)
+                    {
+                        for (int i = 0; i < Model.arealist.Count; i++)
+                        {
+                            @Html.HiddenFor(m => m.arealist[i].Id)
+                            @Html.HiddenFor(m => m.arealist[i].Name)
+                            @Html.LabelFor(m => m.arealist[i].IsSelected, Model.arealist[i].Name, new { @class = "checkbox-inline" })
+                            @Html.CheckBoxFor(m => m.arealist[i].IsSelected)
+
+                        }
+                    }
+
+
+                    <button type="submit" class="btn btn-custom1 btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="variation">
+
+    <div class="col-md-12">
+        <h4>All Riders</h4>
+        <table id="mytable1" class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (Model.riderlist != null)
+                {
+                    foreach (var m in Model.riderlist)
+                    {
+                        <tr>
+                            <td>@m.Id</td>
+                            <td>@m.Name</td>
+                            <td>@m.Phone</td>
+                            @if(@m.RiderStatus == 0)
+                            {
+                                <td>Free</td>
+                            }
+                            else
+                            {
+                                <td>Busy</td>
+                            }
+                            
+                            @*<td><span data-placement="top" data-toggle="tooltip" title="View Rider Details">@Html.ActionLink("View", "", "Rider", new { id = m.Id }, new { @class = "btn btn-warning btn-xs glyphicon glyphicon-plus" })</span></td>*@
+                            <td><span data-placement="top" data-toggle="tooltip" title="Edit Rider Details">@Ajax.ActionLink("Edit", "EditRider", "Rider", new { id = m.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popup" }, new { @class = "btn btn-success btn-xs glyphicon glyphicon-plus" })</span></td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="Delete Rider">@Html.ActionLink("Delete", "DeleteRider", "Rider", new { id = m.Id }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon-trash" })</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row" id="ModalVariant">
+</div>

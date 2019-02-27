@@ -1,0 +1,507 @@
+﻿@using FoodDelivery.WebApp.Models
+@{
+    Layout = null;
+    string userName = Convert.ToString(ViewBag.UserName);
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Restaurants</title>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+    
+    <style>
+        .contactLbl{
+            color:#E5E4E3;
+            font-size:20px;
+            margin-bottom:10px;
+        }
+        .contactUs{
+             font-size:30px;
+            font-weight:bold;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            line-height:3;
+            color:#E5E4E3;
+        }
+        .aboutheading{
+            font-size:25px;
+            font-weight:bold;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            line-height:3;
+            color:#E5E4E3;
+
+        }
+        .aboutUs{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:40px;
+            font-weight:bold;
+            color:#E5E4E3;
+
+        }
+        .abouttext{
+            color:#808080;
+        }
+        .aboutHead{
+            border-bottom-style:solid;
+            border-bottom-color:#ff0000;
+            border-bottom-width:1px;
+        }
+        .resdiv:hover{
+            background-color:#f8f8f8;
+            
+        }
+        .foodtypesdiv{
+            background-color:#FAEBCC;
+            padding:30px;
+            padding-left:0px;
+            margin-bottom:20px;
+            
+        }
+        .foodtypessearch{
+            list-style-type:none;
+            margin-left:0px;
+            line-height:2.5;
+            
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+        .foodtypeslink{
+           
+            color:#000000;
+            font-size:20px;
+            margin-left:0px;
+        }
+        .foodtypeslink:hover{
+            color:#BF2413;
+            font-size:20px;
+            text-decoration:none;
+        }
+        #Res_mainpic {
+            width: 100%;
+            background-size: cover;
+            background-image: url("../../images/Chroizo-Egg-Skillet-22.jpg");
+            background-repeat: no-repeat;
+            height: 400px;
+        }
+
+        .navbar-nav li a {
+            color: #e5e5e5;
+            font-size: x-large;
+            font-family: Leelawadee;
+        }
+
+
+        .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+            background-color: #BF2413;
+            color: #ffffff;
+        }
+
+        .Res_header {
+            height: 150px;
+            background-color: #BF2413;
+            padding-top: 20px;
+        }
+
+        .type-nav-links {
+            font-size: 20px;
+            font-family: cursive;
+        }
+
+        .Res-name {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            color: #BF2413;
+        }
+
+        .footer-heading {
+            font-size: 30px;
+            font-weight: bold;
+            color: #BF2413;
+        }
+
+        .footer-item {
+            font-size: 20px;
+            color: #808080;
+        }
+
+        .footer-list {
+            list-style-type: none;
+            padding-left: 0px;
+        }
+
+            .footer-list li a {
+                color: #808080;
+                text-decoration: none;
+            }
+
+                .footer-list li a:hover {
+                    color: #ffffff;
+                }
+
+        .footer-section {
+            padding-top: 30px;
+            text-align: left;
+        }
+
+        .footer {
+            height: 350px;
+            background-color: #1C2C39;
+        }
+        .menu_container {
+            background-color: #ffffff;
+            min-height: 400px;
+        }
+
+        .cart_container {
+        }
+
+        .menu_cat_div {
+            background-color: #FEF1DF;
+            min-height: 50px;
+            padding: 5px;
+        }
+
+        .menu_cat {
+            font-family: 'Open Sans',sans-serif;
+            color: #000000;
+            font-size: 30px;
+        }
+
+        .container_div {
+            margin-top: 30px;
+        }
+
+        .item_name {
+            color: #BF2413;
+            font-family: 'Open Sans',sans-serif;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .item_desc {
+            font-family: 'Open Sans',sans-serif;
+            font-size: 15px;
+        }
+
+        .item_price {
+            font-family: 'Open Sans',sans-serif;
+            font-size: 20px;
+            color: #BF2413;
+            margin-right: 15px;
+        }
+
+        .item_price_div {
+            text-align: right;
+            padding-top: 10px;
+        }
+
+        .item_div {
+            border-bottom: 2px solid #E5E4E3;
+            padding-left: 5px;
+        }
+
+        .cart_item_name {
+            margin-top: 10px;
+            font-family: 'Open Sans',sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .namediv {
+            background-color: #ffffff;
+            opacity: 0.7;
+            width: 650px;
+            padding: 20px;
+            border-radius: 14px;
+            padding-top: 20px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .cart_item-price {
+            margin-top: 10px;
+            font-family: 'Open Sans',sans-serif;
+            font-size: 20px;
+            float: right;
+        }
+
+        .cart_total_div {
+            background-color: #FFFDED;
+        }
+
+        .cart_total_item {
+            margin-top: 15px;
+        }
+
+        .cart_item-quntity {
+            margin-top: 10px;
+            font-family: 'Open Sans',sans-serif;
+            font-size: 15px;
+        }
+
+        .res_detail_label {
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .res_detail_info {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 30px;
+        }
+        .chkoutbtn{
+            width:100%;
+            margin-top:20px;
+            font-size:25px;
+            margin-bottom:25px;
+        }
+    </style>
+</head>
+<body>
+
+    @* Login Scripts *@
+
+    <script>
+    $(document).ready(function () {
+        $('#mytable1').dataTable();
+    });
+
+
+    function popuplogin() {
+        $('#loginmodal').modal('show');
+
+        jQuery.validator.unobtrusive.parse("#validateloginform");
+    }
+
+    function popuporderDetailModal() {
+        $('#orderDetailModal').modal('show');
+    }
+
+    $(function () {
+        $('#btnlogin').click(function (e) {
+            e.preventDefault();
+            var TController = '@ViewContext.RouteData.Values["controller"].ToString()';
+            var TAction = '@ViewContext.RouteData.Values["action"].ToString()';
+            var Qstring = '@ViewContext.HttpContext.Request.QueryString';
+            $.ajax({
+                type: "POST",
+                url: '/home/login',
+                data: {
+                    "Phone": $('#phonetxt').val(),
+                    "Password": $('#passwordtxt').val(),
+                    "Rememberme": $('input:checkbox:checked').val(),
+                    "ControllerName": TController,
+                    "ActionName": TAction,
+                    "QueryString": Qstring,
+                },
+
+                datatype: "json",
+                success: function (result) {
+                    if (result.link != null) {
+                        window.location.href = result.link;
+                    }
+                    else {
+                        $('#error-message').html(result.message);
+                    }
+
+                }
+
+            });
+        });
+    });
+
+        $(function () {
+            $("#txtSearch").autocomplete({
+                source: '@Url.Action("SearchRestaurant", "Home")'
+            });
+        });
+
+</script>
+
+
+    <div class="container-fluid Res_header">
+        <div>
+            <img src="~/images/LazyLogo.png" />
+        </div>
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                @if (!string.IsNullOrEmpty(userName))
+                {
+
+                    <li><a href="#">My Orders</a></li>
+
+
+                }
+                <li><a href="@Url.Action("Restaurants", "Home")">Restaurants</a></li>
+                <li><a href="@Url.Action("AboutUs", "Home")">About Us</a></li>
+                <li><a href="@Url.Action("Contact", "Contact")">Contact</a></li>
+            </ul>
+
+            @if (!string.IsNullOrEmpty(userName))
+            {
+                <div class="dropdown" style="float:right;">
+                    <button class="btn btn-custom1 dropdown-toggle" type="button" data-toggle="dropdown">
+                        Welcome | @userName
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("MyOrders","Home")">MyOrders</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    </ul>
+                </div>
+
+
+
+            }
+            else
+            {
+                <button id="log" type="button" class="btn btn-custom1" style="float:right;" data-target="#loginmodal" data-toggle="modal">Login</button>
+                <button id="log" type="button" class="btn btn-custom1" style="float:right; margin-right:7px;" data-target="#signupmodal" data-toggle="modal">Signup</button>
+
+
+            }
+
+            @* Login Modal *@
+            <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="text-align:center; background-color:#BF2413; color:#ffffff">
+                            <button class="close" type="button" data-dismiss="modal">&times;</button>
+                            <h2><span class="glyphicon glyphicon-lock"></span>Login</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p id="error-message"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="loginform">
+                            @* Login form will render here *@
+
+                            @Html.Partial("~/Views/Shared/_LoginPartialView.cshtml")
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <p>Not a member? <button class="btn btn-custom1" data-toggle="modal" data-target="#signupmodal" data-dismiss="modal">Sign Up</button></p>
+                            <p><button class="btn btn-custom1 btn-sm" data-toggle="modal" data-target="#forgotpasswordmodal" data-dismiss="modal">Forgot Password ?</button></p>
+                            <p>Forgot <a href="#">Password?</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Signup Modal *@
+            <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style=" background-color:#BF2413; text-align:center; color:#ffffff">
+                            <button class="close" type="button" data-dismiss="modal">&times;</button>
+                            <h2><span class="glyphicon glyphicon-user"></span>Sign Up</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p id="error-message"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="loginform">
+                            @* Signup form will render here *@
+
+                            @Html.Partial("~/Views/Shared/_SignupPartialView.cshtml")
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <p>Already a member? <button class="btn btn-custom1" data-toggle="modal" data-target="#loginmodal" data-dismiss="modal">Login</button></p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Signup Modal *@
+            <div class="modal fade" id="forgotpasswordmodal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style=" background-color:#BF2413; text-align:center">
+                            <button class="close" type="button" data-dismiss="modal">&times;</button>
+                            <h2><span class="glyphicon glyphicon-user"></span>ForgotPassword</h2>
+                        </div>
+                        <div class="modal-body" id="loginform">
+                            @* ForgotPassword form will render here *@
+
+                            @Html.Partial("~/Views/Shared/_ForgotPassword.cshtml")
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    @RenderBody()
+
+
+    <div class="container-fluid footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-section">
+                    <p><span class="footer-heading">About Us</span></p>
+                    <ul class="footer-list">
+                        <li class="footer-item"><a href="#">About</a></li>
+                        <li class="footer-item"><a href="@Url.Action("Index","RiderLocation")">Rider Area</a></li>
+                        <li class="footer-item"><a href="@Url.Action("RestaurantManager", "RestaurantManager")">Restaurant Area</a></li>
+                        <li class="footer-item"><a href="#">Get Our App</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <p><span class="footer-heading">Browse Restaurants</span></p>
+                    <ul class="footer-list">
+                        <li class="footer-item"><a href="#">Desi Retaurants</a></li>
+                        <li class="footer-item"><a href="#">Fast Food Restaurants</a></li>
+                        <li class="footer-item"><a href="#">Desserts Restaurants</a></li>
+                        <li class="footer-item"><a href="#">Chinese Restaurants</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <p><span class="footer-heading">Join US</span></p>
+                    <ul class="footer-list">
+                        <li class="footer-item"><a href="#"><span class="icon"></span>Facebook</a></li>
+                        <li class="footer-item"><a href="#">Twitter</a></li>
+                        <li class="footer-item"><a href="#">Instagram</a></li>
+                        <li class="footer-item"><a href="#">Google+</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

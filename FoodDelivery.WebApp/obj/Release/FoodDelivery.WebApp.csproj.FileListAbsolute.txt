@@ -1,0 +1,108 @@
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb
+E:\Current Semester\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+E:\Current Semester\final project 1 intigration\9-05-2016 project\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\17-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-login-working\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll.config
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\FoodDelivery.WebApp.pdb
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Helpers.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\bin\System.Web.Mvc.xml
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.dll
+C:\Users\Sh Junaid\Desktop\9-05-2016 project\18-05-2016-customerlayoutmplemented\Food Delivery Web Application\FoodDelivery.Web.Application\FoodDelivery.WebApp\obj\Release\FoodDelivery.WebApp.pdb

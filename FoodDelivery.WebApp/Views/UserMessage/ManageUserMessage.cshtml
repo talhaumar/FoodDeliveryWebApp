@@ -1,0 +1,55 @@
+﻿@model FoodDelivery.WebApp.Models.Message
+@using FoodDelivery.WebApp.Models
+
+@{
+    ViewBag.Title = "ManageUserMessage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    List<Message> userMessageList = ViewBag.messages;
+}
+
+<h2>ManageUserMessage</h2>
+
+<div class="row" id="variation">
+
+    <div class="col-md-12">
+        <h4>Customers Messages</h4>
+        <table id="mytable1" class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Description</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (userMessageList != null)
+                {
+                    foreach (Message m in userMessageList)
+                    {
+                        <tr>
+                            <td>@m.Id</td>
+                            <td>@m.Name</td>
+                            <td>@m.Subject</td>
+                            <td>@m.Description</td>
+                            @if (m.UserId != null)
+                            {
+                                <td><span data-placement="top" data-toggle="tooltip" title="View Messsage">@Ajax.ActionLink("View Message", "ViewMessage", "UserMessage", new { id = m.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popupSimpleModal" }, new { @class = "btn btn-warning btn-xs glyphicon glyphicon-edit" })</span></td>
+                            }
+                            else
+                            {
+                                <td>Guest user is not viewable</td>
+                            }
+                            <td><span data-placement="top" data-toggle="tooltip" title="Delete User">@Html.ActionLink("Delete", "DeleteMessage", "UserMessage", new { id = m.Id }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon-trash" })</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row" id="ModalVariant">
+</div>

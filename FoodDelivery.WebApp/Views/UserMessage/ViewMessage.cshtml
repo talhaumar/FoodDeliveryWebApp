@@ -1,0 +1,48 @@
+﻿@model FoodDelivery.WebApp.Models.Message
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="simplemodal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF2413">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-user" style="margin-right:10px"></span>View User</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-sm-12 userrow"><span class="userheading">Id</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Id</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Name</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Name</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Subject</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Subject</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Description</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Description</span></div>
+                        @if (Model.UserId != null)
+                        {
+                            <div class="col-sm-12 userrow"><span class="userheading">User ID</span></div>
+                            <div class="col-sm-12"><span class="userdetail">@Model.UserId</span></div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-12 userrow"><span class="userheading">Guest User</span></div>
+                        }
+                        
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

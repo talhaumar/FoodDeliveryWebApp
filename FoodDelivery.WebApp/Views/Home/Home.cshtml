@@ -1,0 +1,118 @@
+﻿@model FoodDelivery.WebApp.Models.User
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Home</h2>
+
+<span data-toggle="tooltip" title="Register your profile" class="test"><button id="log" type="button" class="btn btn-info" data-target="#signupmodal" data-toggle="modal">Signup</button></span>
+<span data-placement="top" data-toggle="tooltip" title="Login">@Ajax.ActionLink("Login", "login", "Home", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popup" }, new { @class = "btn btn-info" })</span>
+
+<div class="modal fade" id="signupmodal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span>Signup</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="post" action="@Url.Action("InsertCustomer", "Home")">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, "Name", new { @class = "glyphicon glyphicon-user" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter name" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone, "Phone", new { @class = "glyphicon glyphicon-eye-open" })
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Enter Phone" })
+                        @Html.ValidationMessageFor(m => m.Phone, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, "Password", new { @class = "glyphicon glyphicon-eye-open" })
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                        @Html.ValidationMessageFor(m => m.Password, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, "Email", new { @class = "glyphicon glyphicon-eye-open" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                        @Html.ValidationMessageFor(m => m.Email, null, new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address, "Address", new { @class = "glyphicon glyphicon-eye-open" })
+                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "Enter Address" })
+                        @Html.ValidationMessageFor(m => m.Address, null, new { style = "color:red" })
+                    </div>
+
+
+
+
+                    @*@if (Model. != null)
+                        {
+                            for (int i = 0; i < Model.RestaurantType.Count; i++)
+                            {
+                                @Html.HiddenFor(m => m.RestaurantType[i].Id)
+                                @Html.LabelFor(m => m.RestaurantType[i].IsSelected, Model.RestaurantType[i].Name, new { @class = "checkbox-inline" })
+                                @Html.CheckBoxFor(m => m.RestaurantType[i].IsSelected)
+
+                            }
+                        }*@
+
+
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="row" id="variation">
+
+        <div class="col-md-12">
+            <h4>All Restaurants</h4>
+            <table id="mytable1" class="table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @if (Model.restaurantlist != null)
+                    {
+                        foreach (var m in Model.restaurantlist)
+                        {
+                            <tr>
+                                <td>@m.Id</td>
+                                <td>@m.Name</td>
+                                <td>@m.Phone</td>
+                                <td>@m.Address</td>
+                                <td>@m.Email</td>
+                                <td><span data-placement="top" data-toggle="tooltip" title="View Restaurant Details">@Html.ActionLink("View", "ViewMenu", "Restaurant", new { id = m.Id }, new { @class = "btn btn-warning btn-xs glyphicon glyphicon-plus" })</span></td>
+                                <td><span data-placement="top" data-toggle="tooltip" title="Edit Restaurant Details">@Ajax.ActionLink("Edit", "EditRestaurant", "Restaurant", new { id = m.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "timepic" }, new { @class = "btn btn-success btn-xs glyphicon glyphicon-plus" })</span></td>
+                                <td><span data-placement="top" data-toggle="tooltip" title="Delete Restaurant">@Html.ActionLink("Delete", "", "", new { id = m.Id }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon-trash" })</span></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>*@
+
+
+
+
+<div class="row" id="ModalVariant">
+</div>
+

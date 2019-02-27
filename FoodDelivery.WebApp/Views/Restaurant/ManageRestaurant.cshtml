@@ -1,0 +1,146 @@
+﻿@model FoodDelivery.WebApp.Models.RestaurantModel
+
+@{
+    ViewBag.Title = "ManageRestaurant";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ManageRestaurant</h2>
+<span data-toggle="tooltip" title="Add a New Restaurant" class="test" style="margin-right:20px"><button id="log" type="button" class="btn btn-custom1" data-target="#restaurantaddmodal" data-toggle="modal">Add Restaurant</button></span>
+<span data-placement="top" data-toggle="tooltip" title="Add New Restaurant Type">@Ajax.ActionLink("Add Restaurant Types", "ManageRestaurantType", "Restaurant", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "popup" }, new { @class = "btn btn-custom1" })</span>
+
+
+<div class="modal fade" id="restaurantaddmodal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF2413">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></span>Add New Restaurant</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form" method="post" action="@Url.Action("InsertRestaurant", "Restaurant")" enctype="multipart/form-data">
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Name, "Name")
+                    @Html.TextBoxFor(m => m.restaurant.Name, new { @class = "form-control", placeholder = "Enter name" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Name, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Phone, "Phone")
+                    @Html.TextBoxFor(m => m.restaurant.Phone, new { @class = "form-control", placeholder = "Enter Phone" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Phone, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Email, "Email")
+                    @Html.TextBoxFor(m => m.restaurant.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Email, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Address, "Address")
+                    @Html.TextAreaFor(m => m.restaurant.Address, new { @class = "form-control", placeholder = "Enter Address" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Address, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Password, "Password")
+                    @Html.TextBoxFor(m => m.restaurant.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Password, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Tax, "Tax")
+                    @Html.TextBoxFor(m => m.restaurant.Tax, new { @class = "form-control", placeholder = "Enter Tax" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Tax, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.OpeningTime, "Opening Time")
+                    @Html.TextBoxFor(m => m.restaurant.OpeningTime, new { id = "opentime", @class = "form-control", @placeholder = "click to select time" })
+                    @Html.ValidationMessageFor(m => m.restaurant.OpeningTime, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.ClosingTime, "Closing Time")
+                    @Html.TextBoxFor(m => m.restaurant.ClosingTime, new { id = "closetime", @class = "form-control", @placeholder = "click to select time" })
+                    @Html.ValidationMessageFor(m => m.restaurant.ClosingTime, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Area, "Area")
+                    @Html.TextBoxFor(m => m.restaurant.Area, new { id = "txtPlaces", @class = "form-control", @placeholder = "Enter Area" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Area, null, new { style = "color:red" })
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.Review, "Review")
+                    @Html.TextAreaFor(m => m.restaurant.Review, new { @class = "form-control", placeholder = "Enter Review" })
+                    @Html.ValidationMessageFor(m => m.restaurant.Review, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.restaurant.ImageURL, "Upload Image")
+                    <span class="btn btn-default btn-info"><input type="file" name="file" class="form-control" placeholder="Browse"></span>
+                    @Html.ValidationMessageFor(m => m.restaurant.ImageURL, null, new { style = "color:red" })
+                </div>
+
+                @if(Model.RestaurantType != null)
+                { 
+                    for (int i = 0; i < Model.RestaurantType.Count; i++)
+                    {
+                        @Html.HiddenFor(m => m.RestaurantType[i].Id)
+                        @Html.HiddenFor(m => m.RestaurantType[i].Name)
+                        @Html.LabelFor(m => m.RestaurantType[i].IsSelected, Model.RestaurantType[i].Name, new { @class = "checkbox-inline chkbox" })
+                        @Html.CheckBoxFor(m => m.RestaurantType[i].IsSelected)
+
+                    }
+                }
+
+
+                <button type="submit" class="btn btn-custom1 btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-custom1 pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+        </div>
+    </div>
+ </div>
+</div>
+
+<div class="row" id="variation">
+
+    <div class="col-md-12">
+        <h4>All Restaurants</h4>
+        <table id="mytable1" class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (Model.restaurantlist != null)
+                {
+                    foreach (var m in Model.restaurantlist)
+                    {
+                        <tr>
+                            <td>@m.Id</td>
+                            <td>@m.Name</td>
+                            <td>@m.Phone</td>
+                            <td>@m.Address</td>
+                            <td>@m.Email</td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="View Restaurant Menu">@Html.ActionLink("Menu", "ViewMenu", "Restaurant", new { id = m.Id }, new { @class = "btn btn-success btn-sm " })</span></td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="Edit Restaurant Details">@Ajax.ActionLink("Edit", "EditRestaurant", "Restaurant", new { id = m.Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalVariant", OnSuccess = "editcase" }, new { @class = "btn btn-warning btn-sm glyphicon glyphicon-edit" })</span></td>
+                            <td><span data-placement="top" data-toggle="tooltip" title="Delete Restaurant">@Html.ActionLink("Delete", "DeleteRestaurant", "Restaurant", new { id = m.Id }, new { @class = "btn btn-danger btn-sm glyphicon glyphicon-trash" })</span></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+ </div>
+
+<div class="row" id="ModalVariant">
+</div>

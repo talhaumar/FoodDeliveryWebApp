@@ -1,0 +1,50 @@
+﻿@using FoodDelivery.WebApp.Models
+@{
+    Layout = null;
+    int deliveryCharges = (int)Session["deliveryCharges"];
+
+}
+
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-sm-12" style="text-align:center"><span style="font-family:'Open Sans',sans-serif; font-size:30px; color:#000000">Your Order</span></div>
+</div>
+
+
+    @foreach (item f in (List<item>)Session["cart"])
+    {
+        <div class="row">
+
+            <div class="col-sm-1" style="margin-top:10px">@Ajax.ActionLink("-", "deleteitem", "ShowRestaurant", new { id = f.fitem.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "cartRender" }, new { @class = "btn btn-danger btn-xs " })</div>
+            <div class="col-sm-7 cart_item_name"><span>@f.fitem.Name</span></div>
+            <div class="col-sm-2 cart_item-quntity"><span>@f.quantity</span><span style="font-size:12px">x</span></div>
+            <div class="col-sm-2 cart_item-price"><span>@f.fitem.Price</span></div>
+        </div>
+    }
+
+       
+<div class="row cart_total_div">
+    <div class="col-sm-12 cart_total_item"><span style="font-size:15px">Sub total</span><span style="float:right; font-size:15px">@Session["subtotal"]</span></div>
+    <div class="col-sm-12 cart_total_item"><span style="font-size:15px">Delivery Charges</span><span style="float:right; font-size:15px">@deliveryCharges</span></div>
+    <div class="col-sm-12 cart_total_item"><span style="font-size:30px; color:#BF2413">Total</span><span style="float:right; color:#BF2413; font-size:30px">@Session["total"]</span></div>
+</div>
+
+
+
+
+
+@*@foreach (item f in (List<item>)Session["cart"])
+    {
+        <h3>@Session["Restaurant"]</h3>
+        <h3>@f.fitem.Id</h3>
+        <p>@f.fitem.Name</p>
+        <p>@f.fitem.Price</p>
+        <p>@f.quantity</p>
+        <p>@(f.fitem.Price*f.quantity)</p>
+        @Html.ActionLink("Continue", "RestaurantDisplay", "ShowRestaurant", new { a = (int)Session["Restaurant"]}, new { @class = "btn btn-info" })
+
+
+    }*@
+
+
+

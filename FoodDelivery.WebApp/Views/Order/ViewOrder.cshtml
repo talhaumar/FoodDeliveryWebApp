@@ -1,0 +1,179 @@
+﻿@model FoodDelivery.WebApp.Models.OrderViewModel
+@using FoodDelivery.WebApp.Models
+@{
+    ViewBag.Title = "ViewOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row" id="OrderVariation" style="padding:20px;">
+    <div class="row">
+        <div class="col-sm-12 order-main-heading"><h1>Order Details</h1></div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-sm-6 ">
+            <h4><label class="orderheading">ID</label></h4>
+            <h5>@Html.DisplayFor(m => m.order.Id)</h5>
+        </div>
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Customer Name</label></h4>
+            <h5><label for="username">@ViewBag.uName</label></h5>
+            @if (ViewBag.flag == true)
+            {
+                <p style="color:red; font-weight:bold">@ViewBag.Star</p>
+            }
+        </div>
+        <div class="col-sm-6">
+            <h4><label class="orderheading">StreetAddress</label></h4>
+            <h5>@Html.DisplayFor(m => m.order.StreetAddress)</h5>
+        </div>
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Order DateTime</label></h4>
+            <h5>@Html.DisplayFor(m => m.order.OrderDateTime)</h5>
+        </div>
+       
+        
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Restaurant Name</label></h4>
+            <h5><label for="username">@ViewBag.ResName</label></h5>
+        </div>
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Cook Time</label></h4>
+            <h5>@Html.DisplayFor(m => m.order.CookTime)</h5>
+        </div>
+    </div>
+
+    
+
+    @*<div class="row">
+            <div class="col-sm-6">
+                <form role="form" method="post" action="@Url.Action("UpdateOrderStatus", "Order", new { oid = Model.order.Id})">
+                    <div class="form-group">
+                        <h2><label>Order Status</label></h2>
+                        @Html.DropDownListFor(m => m.SelectOrderStatusId, ViewBag.oslist as List<SelectListItem>, "Select OrderStaus", new { @class = "dropdown" })
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>*@
+
+    <div class="row">
+        <div class="col-sm-12 ">
+            <div class="col-sm-12 order-main-heading"><h2>Order Status</h2></div>
+            <div class="col-sm-12">
+                @if (Model.order.OrderStatusId == 1)
+                {
+                    <h4 class="orderheading">Pending</h4>
+                }
+                else if (Model.order.OrderStatusId == 2)
+                {
+                    <h4 class="orderheading">Inprocess</h4>
+                }
+                else if (Model.order.OrderStatusId == 3)
+                {
+                    <h4 class="orderheading">Delivered</h4>
+                }
+                else if (Model.order.OrderStatusId == 4)
+                {
+                    <h4 class="orderheading">Canceled</h4>
+                }
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="row" id="ridervariation">
+        <div class="col-sm-12">
+            <div class="col-sm-12 order-main-heading"><h2>All Orders</h2></div>
+            
+            <table id="mytable1" class="table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Areas Coverage</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @if (ViewBag.RiderInfo != null)
+                    {
+                        foreach (OrderViewModel r in ViewBag.RiderInfo)
+                        {
+                            <tr>
+                                <td>@r.rider.Name</td>
+                                <td>@r.rider.Phone</td>
+                                <td>
+                                    &nbsp;&nbsp;
+                                    @foreach (Area a in r.rAreas)
+                                    {
+                                        @a.Name
+                                    }
+                                </td>
+
+                                <td><span data-placement="top" data-toggle="tooltip" title="Assign him">@Html.ActionLink("Assign Him", "AssignRider", "Order", new { orderid = Model.order.Id, riderid = r.rider.Id }, new { @class = "btn btn-custom1 btn-xs glyphicon glyphicon-plus" })</span></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 order-main-heading"><h2>Payment Details</h2></div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Payment ID</label></h4>
+            <h5><label for="payment">@Model.payment.Id</label></h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h4><label class="orderheading">Payment Amount</label></h4>
+            <h5><label for="paymenamount">@Model.payment.Amount</label></h5>
+        </div>
+    </div>
+
+    @if (Model.payment.PaymentStatus != 1)
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <form role="form" method="post" action="@Url.Action("UpdatePaymentStatus", "Order", new { oid = Model.order.Id})">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.payment.PaymentTime, "Payment Time")
+                        @Html.TextBoxFor(m => m.payment.PaymentTime, new { id = "paymenttime", @class = "form-control", @placeholder = "click to select time" })
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Status</label>
+                        @Html.DropDownListFor(m => m.payment.SelectPaymentStatusId, ViewBag.PaymentStatus as List<SelectListItem>, "Select Payment Status", new { @class = "dropdown" })
+                    </div>
+                    <button type="submit" class="btn btn-custom1 btn-sm"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <h2><label>Payment Time</label></h2>
+                <h4><label for="paymenttime">@Model.payment.PaymentTime</label></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2><label>Payment Amount</label></h2>
+                <h4><label for="paymentstatus">Paid</label></h4>
+            </div>
+        </div>
+    }
+
+
+</div>

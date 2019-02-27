@@ -1,0 +1,42 @@
+﻿@model FoodDelivery.WebApp.Models.User
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="simplemodal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF2413">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 style="text-align:center; color:#ffffff"><span class="glyphicon glyphicon-user" style="margin-right:10px"></span>View User</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    
+                    <div class="row">
+                        <div class="col-sm-12 userrow"><span class="userheading">Id</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Id</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Name</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Name</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Phone</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Phone</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Password</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Password</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Email</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Email</span></div>
+                        <div class="col-sm-12 userrow"><span class="userheading">Address</span></div>
+                        <div class="col-sm-12"><span class="userdetail">@Model.Address</span></div>
+                    </div>
+
+                   
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom1" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

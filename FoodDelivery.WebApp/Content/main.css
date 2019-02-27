@@ -1,0 +1,49 @@
+﻿#header{
+    background-color:lavenderblush;
+}
+#header::before{
+    content:"";
+    background-image: url("../images/overlay-pattern.png"); 
+   
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  
+  opacity: 0.3;
+
+
+}
+#hero-area
+ {
+ 
+    background-image: url("../images/overlay-pattern.png"); 
+position: fixed; 
+opacity: 0.8; 
+left: 0px; 
+top: 0px; 
+width: 100%; 
+height: 100%; 
+z-index: -1;
+}
+
+#admin-header{
+    background-color:#BF2413;
+    min-height:150px;
+
+}
+
+
+.label-danger {
+    background-color:#ffffff;
+    color: #d9534f;
+}
+
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+    background-color:#ffffff;
+    color: #c9302c;
+}
